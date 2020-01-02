@@ -18,10 +18,10 @@ module.exports = {
 
     delete: (req, res) => {
         const { id } = req.params;
-        let { user } = req.session;
+        let user = req.session.user;
 
-        const index = swag.findIndex(swag => swag.id == id);
-        const selectedSwag = swag[index];
+        const index = user.cart.findIndex(swag => swag.id == id);
+        const selectedSwag = user.cart[index];
         
         if(index !== -1) {
             user.cart.splice(index, 1);
